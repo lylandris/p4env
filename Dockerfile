@@ -2,7 +2,6 @@ FROM ubuntu:14.04.5
 MAINTAINER lylandris
 
 RUN set -xe \
-    && sed -i 's/archive.ubuntu.com/mirrors.163.com/g' /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y sudo openssh-server vnc4server \
     && apt-get install -y --no-install-recommends fvwm-crystal \
