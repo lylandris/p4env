@@ -26,11 +26,7 @@ WORKDIR /root
 RUN set -xe \
     && apt-get update \
     && apt-get install -y git net-tools vim wget \
-    && mkdir -p /root/.pip \
-    && touch -a /root/.pip/pip.conf \
-    && chmod 644 /root/.pip/pip.conf \
-    && echo "[global]\ntrusted-host = mirrors.aliyun.com\nindex-url = http://mirrors.aliyun.com/pypi/simple" > /root/.pip/pip.conf \
-    && git clone https://github.com/lylandris/behavioral-model.git \
+    && git clone https://github.com/p4lang/behavioral-model.git \
     && cd behavioral-model \
     && git checkout 1.4.x \
     && ./install_deps.sh \
