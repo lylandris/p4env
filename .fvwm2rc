@@ -1,0 +1,265 @@
+#############################################
+# Place at $HOME/.fvwm/.fvwm2rc
+# or u /etc/system.fvwm2rc
+#
+############################################
+# 1.DeskTop
+############################################
+
+# 1.1 Title 
+# ------------------
+#TitleStyle (VGradient 128 2 royalblue1 50 royalblue3 50 royalblue4)
+#AddTitleStyle ActiveDown (VGradient 128 2 royalblue3 50 royalblue1 50 royalblue4)
+#TitleStyle Inactive (VGradient 128 2 grey85 50 grey70 50 grey50) -- Flat
+
+# 1.2 Botton 
+# ------------
+
+# boutton 2:minimize
+#ButtonStyle 2 (VGradient 128 2 royalblue1 50 royalblue3 50 royalblue4) -- Flat
+#ButtonStyle 2 Inactive (VGradient 128 2 grey85 50 grey70 50 grey50) -- Flat
+#AddButtonStyle 2 ActiveUp (4 25x80@0 85x80@0 85x75@0 25x75@0 25x70@0 85x70@0) -- Flat
+#AddButtonStyle 2 ActiveDown (VGradient 128 2 royalblue3 50 royalblue1 50 royalblue4 4 25x80@1 85x80@1 85x75@1 25x75@1 25x70@1 85x70@1) -- Flat
+#AddButtonStyle 2 Inactive (4 25x80@0 85x80@0 85x75@0 25x75@0 25x70@0 85x70@0) -- Flat
+
+# 1.3 Menu 
+# --------------
+#MenuStyle * Foreground white, Background black
+#MenuStyle * Hilight3DOff, Hilight3DThickness 2
+#MenuStyle * Hilight3DOff, HilightBack grey50, ActiveFore white
+#BorderStyle -- HiddenHandles NoInset
+
+########################################################
+# 2.Desktop
+########################################################
+# 2.1 MultiDesktop
+# ---------------------------
+DeskTopSize 1x1
+EdgeThickness 0
+#EdgeResistance 1000 100
+
+# 2.2 Detail 
+# -----------------------
+ClickTime 750
+OpaqueMoveSize 150
+SnapAttraction 8 All Screen
+ColormapFocus FollowsMouse
+
+# 2.3 Other 
+# ---------------------------------------------
+#Style "*"			Font -adobe-helvetica-medium-r-*-*-12-*
+#Style "*"			IconFont -adobe-helvetica-medium-r-*-*-12-*
+Style "*"			HilightFore white, HilightBack #1c5572 
+Style "*"			BorderWidth 1, HandleWidth 1
+Style "*"			Color black/#8090A0
+Style "*"			MWMFunctions, MWMDecor, HintOverride
+Style "*"			MWMBorder
+Style "*"			DecorateTransient, NoPPosition
+Style "*"			IconBox 1096 404 1152 -120
+#Style "*"			SmartPlacement
+Style "*"			ClickToFocus,ClickToFocusPassesClick
+#Style "*"			SloppyFocus
+Style "*"			MouseFocusClickRaises
+Style "*"			WindowShadeShrinks, WindowShadeSteps 100
+
+# 2.4 Program
+# --------------------------
+Style "Fvwm*"		NoTitle, Sticky, WindowListSkip
+Style "Fvwm*"		BorderWidth 2, CirculateSkipIcon, CirculateSkip
+Style "FvwmPager"	StaysOnTop
+Style "FvwmBanner"	StaysOnTop
+Style "FvwmButtons"	NoTitle, WindowListSkip, Sticky
+
+Style "xclock*"		NoTitle, NoHandles, Sticky, WindowListSkip
+Style "xmms"		NoTitle, NoHandles, WindowListSkip, Sticky, ClickToFocus
+Style "xcalc"		RandomPlacement,ClickToFocus
+Style "xman"		RandomPlacement, ClickToFocus
+Style "crxvt-gb"	MouseFocusClickRaises
+
+#####################################
+# 3. Command
+####################################
+
+# 3.1 Key 
+# -----------------------
+
+# some simple default key bindings:
+Key Return WTSFI M Maximize
+Key Return WTSFI M2 Maximize
+Key Escape A C WindowList Root c c
+Key Escape A C2 WindowList Root c c
+
+Key 1 A M GotoPage 0 0
+Key 2 A M GotoPage 1 0
+Key 3 A M GotoPage 0 1
+Key 4 A M GotoPage 1 1
+
+# some simple default mouse bindings:
+# up and down
+Key Left    A        M       Scroll -100 +0
+Key Left    A        M2      Scroll -100 +0
+Key Right   A        M       Scroll +100 +0
+Key Right   A        M2      Scroll +100 +0
+Key Up      A        M       Scroll +0 -100
+Key Up      A        M2      Scroll +0 -100
+Key Down    A        M       Scroll +0 +100
+Key Down    A        M2      Scroll +0 +100
+
+Mouse 1 R       A       Menu RootMenu Nop
+Mouse 2 R       A       Menu RootMenu Nop
+Mouse 3 R       A       WindowList NoGeometry
+Mouse 4 R       A       WindowList NoGeometry
+Mouse 5 R       A       WindowList NoGeometry
+
+Mouse 0 1       A       -
+Mouse 0 2       A       Iconify
+Mouse 1 F       A       Resize-or-Raise
+Mouse 1 TS      N       Move-or-Raise
+Mouse 1 A       M       Move-or-Raise
+Mouse 1 I       A       Move-or-Iconify
+Mouse 2 I       A       Iconify
+Mouse 2 T       A       WindowShade
+Mouse 3 T       A       -
+
+#   for other parts of the window/borders/icons:
+Mouse 1 TS      A       Move-or-Raise
+
+######################## Sample Functions ##########################
+DestroyFunc Move-or-Raise
+AddToFunc Move-or-Raise         "I" Raise
++                               "M" Move
++                               "D" Maximize
+DestroyFunc Move-or-Raise2
+AddToFunc Move-or-Raise2        "M" Raise
++                               "M" Move
++                               "D" Lower
+AddToFunc Maximize-Func         "M" Maximize     0 100
++                               "C" Maximize     0 80
++                               "D" Maximize     100 100
+AddToFunc Move-or-Iconify       "I" Raise
++                               "M" Move
++                               "D" Iconify
+AddToFunc Resize-or-Raise       "I" Raise
++                               "M" Resize
++                               "D" Lower
+AddToFunc Resize-or-Raise2      "M" Raise
++                               "M" Resize
++                               "D" Lower
+AddToFunc PrintFunction         "I" Raise
++                               "I" Exec xdpr -id $w
+AddToFunc PrintReverseFunction  "I" Raise
++                               "I" Exec xdpr 1/2 -h -rv -id $w
+AddToFunc Iconify-and-Raise     "I" Iconify
++                               "I" Raise
+AddToFunc FocusAndWarp          "I" FlipFocus
++                               "I" WarpToWindow 50 50
+AddToFunc DeiconifyFocusAndWarp "I" Iconify -1
++                               "I" FocusAndWarp
+AddToFunc ChangeDefaultFocus    "I" Style "*" $0
++                               "I" Recapture
+AddToFunc MyTab "I" Next [*] DeiconifyFocusAndWarp
+
+# run at fvwm starup
+DestroyFunc StartFunction
+AddToFunc StartFunction
+#+ I Module FvwmButtons MainPanel
+#+ I Module FvwmAuto 500 Raise Nop
+#+ I Module FvwmAnimate
+#+ I Module FvwmTaskBar
+
+# InitProgram
+DestroyFunc InitFunction
+AddToFunc InitFunction
++ I Exec exec xsetroot -solid "#3a6ea5"
++ I Exec exec xrdb .Xresources
++ I Exec exec vncconfig -nowin 
+#+ I Exec exec display -size 1024x768 -window root /home/aa/.fvwm/images/blue.jpg 
+#+ I Exec exec xclock -digital -fg white -bg "#3a6ea5" -strftime "%T" -update 1
+#+ I Exec exec fcitx 
+
+# ExitProgram
+DestroyFunc ExitFunction
+AddToFunc ExitFunction
++ I All (xscreensaver) Close
+
+# 3.2 Modules 
+# --------------------------------
+#AddToFunc InitFunction          "I" Module FvwmPager 0 0
+#+                               "I" Module FvwmButtons
+#+                               "I" Module FvwmButtons MainPanel
+#AddToFunc RestartFunction       "I" Module FvwmPager 0 0
+#+                               "I" Module FvwmButtons
+#+                               "I" Module FvwmButtons MainPanel
+
+# 3.3 Menu
+# --------
+AddToMenu RootMenu
+  + "gvim" Exec exec gvim 
+  + "xterm" Exec exec xterm
+#  + "gnome-terminal" Exec exec gnome-terminal
+#  + "xterm2" Exec exec xterm -bg black -fg white
+#  + "emacs" Exec exec emacs
+  + "reload" Restart fvwm2
+
+########################################################
+# 4. Modules Detail
+########################################################
+
+########################## Window-Identifier ###############################
+# Just choose colors and a fonts
+#*FvwmIdentBack #708090
+#*FvwmIdentFore black
+#*FvwmIdentFont -*-simsun-medium-r-*-*-12-*-*-*-*-*-*-*
+
+########################### Pager #########################################
+*FvwmPagerBack #4a708b
+*FvwmPagerFore #000000
+# turn off desktop names for swallowing in above button bar example:
+*FvwmPagerFont none
+*FvwmPagerHilight #dee5ef
+*FvwmPagerGeometry 50x50-0-0
+#*FvwmPagerSmallFont -*-simsun-medium-r-*-*-12-*-*-*-*-*-*-*
+#*FvwmPagerBalloons            All
+#*FvwmPagerBalloonBack         #4a708b 
+#*FvwmPagerBalloonBack        #000000
+#*FvwmPagerBalloonFore         white
+#*FvwmPagerBalloonFont         -*-simsun-medium-r-*-*-12-*-*-*-*-*-*-*
+#*FvwmPagerBalloonYOffset      +2
+#*FvwmPagerBalloonBorderWidth  1
+#*FvwmPagerBalloonBorderColor  Black
+#DefaultFont "-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso10646-1,-adobe-helvetica-medium-r-normal--14-100-100-100-p-76-iso8859-1"
+#DefaultFont "-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-iso10646-1"
+#DefaultFont "-adobe-helvetica-bold-r-*-*-12-*"
+
+##########################FvwmWinList##################################
+#*FvwmWinListBack #403030
+#*FvwmWinListFore White
+#*FvwmWinListFont -*-simsun-medium-r-*-*-12-*-*-*-*-*-*-*
+#*FvwmWinListAction Click1 Iconify -1,Focus
+#*FvwmWinListAction Click2 Iconify
+#*FvwmWinListAction Click3 Module "FvwmIdent" FvwmIdent
+#*FvwmWinListUseSkipList
+#*FvwmWinListGeometry +0-1
+#*FvwmBackerDesk 0 -solid steelblue
+#*FvwmBackerDesk 1 -solid midnightblue
+#*FvwmScrollBack grey40
+#*FvwmScrollFore green
+#*FvwmBannerTimeout 4
+
+##########################FvwmButtons##################################
+#*FvwmButtonsFore Black
+#*FvwmButtonsBack #4a708b 
+##*FvwmButtonsFont -*-simsun-medium-r-*-*-12-*-*-*-*-*-*-* 
+#*FvwmButtonsGeometry +385+0
+#*FvwmButtonsRows 1
+#*FvwmButtons(Title term, Action 'Exec "" crxvt-gb 
+#*FvwmButtons(Title www, Action 'Exec "mozilla-firefox" mozilla-firefox -geometry 747x510+14+2 &')
+#*FvwmButtons(Title mail, Action 'Exec "sylpheed" sylpheed &')
+#*FvwmButtons(Title icq, Action 'Exec "gaim" gaim &')
+#*FvwmButtons(Title xmms, Action 'Exec "xmms" xmms &')
+#*FvwmButtons(Title lock, Action 'Exec "lock" xscreensaver-command --lock&')
+
+##########################FvwmTaskBar##################################
+#Style "FvwmTaskBar" NoTitle,Sticky,StaysOnTop,WindowListSkip,CirculateSkip
+#Read fvwm.strokes
+
