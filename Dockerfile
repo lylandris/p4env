@@ -60,10 +60,8 @@ RUN set -xe \
     && apt-get update \
     && git clone https://github.com/lylandris/mininet.git \
     && cd mininet \
-    && cp util/install.sh util/install.sh.new \
-    && git checkout 2.2.1 \
-    && sed -i 's/ python-scapy//' util/install.sh.new \
-    && util/install.sh.new \
+    && git checkout for_bmv2 \
+    && util/install.sh \
     && mv /usr/sbin/tcpdump /usr/bin/tcpdump \
     && apt-get autoclean \
     && apt-get autoremove \
