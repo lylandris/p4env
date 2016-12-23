@@ -34,7 +34,7 @@
 ########################################################
 # 2.1 MultiDesktop
 # ---------------------------
-DeskTopSize 1x1
+DeskTopSize 2x2
 EdgeThickness 0
 #EdgeResistance 1000 100
 
@@ -184,10 +184,10 @@ AddToFunc ExitFunction
 
 # 3.2 Modules 
 # --------------------------------
-#AddToFunc InitFunction          "I" Module FvwmPager 0 0
+AddToFunc InitFunction          "I" Module FvwmPager 0 0
 #+                               "I" Module FvwmButtons
 #+                               "I" Module FvwmButtons MainPanel
-#AddToFunc RestartFunction       "I" Module FvwmPager 0 0
+AddToFunc RestartFunction       "I" Module FvwmPager 0 0
 #+                               "I" Module FvwmButtons
 #+                               "I" Module FvwmButtons MainPanel
 

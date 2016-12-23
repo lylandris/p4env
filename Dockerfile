@@ -26,23 +26,45 @@ WORKDIR /root
 RUN set -xe \
     && apt-get update \
     && apt-get install -y git net-tools vim wget \
-    && git clone https://github.com/p4lang/behavioral-model.git \
+    && git clone https://github.com/lylandris/behavioral-model.git \
     && cd behavioral-model \
     && git checkout 1.4.x \
     && ./install_deps.sh \
     && ./autogen.sh \
     && ./configure \
-    && make && make install && make clean\
-    && cd .. \
+    && make && make install && make clean \
+    && apt-get autoclean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN set -xe \
+    && apt-get update \
     && git clone https://github.com/p4lang/p4c-bm.git \
     && cd p4c-bm \
     && pip install -r requirements.txt \
     && python setup.py install \
-    && cd .. \
+    && apt-get autoclean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN set -xe \
+    && apt-get update \
     && git clone https://github.com/p4lang/scapy-vxlan.git \
     && cd scapy-vxlan \
     && python setup.py install \
-    && cd .. \
+    && apt-get autoclean \
+    && apt-get autoremove \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN set -xe \
+    && apt-get update \
+    && git clone https://github.com/lylandris/mininet.git \
+    && cd mininet \
+    && cp util/install.sh util/install.sh.new \
+    && git checkout 2.2.1 \
+    && sed -i 's/ python-scapy//' util/install.sh.new \
+    && util/install.sh.new \
+    && mv /usr/sbin/tcpdump /usr/bin/tcpdump \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
