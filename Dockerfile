@@ -67,6 +67,10 @@ RUN set -xe \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 
+RUN set -xe \
+    && mkdir -p /root/.ssh && chmod 700 /root/.ssh
+
 EXPOSE 22
 
-ENTRYPOINT /usr/sbin/sshd -D
+ENTRYPOINT ["/usr/sbin/sshd"]
+CMD ["-D"]
