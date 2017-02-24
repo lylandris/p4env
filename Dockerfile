@@ -14,7 +14,7 @@ RUN set -xe \
     && sed -i 's/x-window-manager \&/fvwm2 \&/g' /etc/alternatives/vncserver \
     && sed -i 's/\$cmd \.= " -pn";/&\n$cmd .= " -SecurityTypes None -localhost";/g' /etc/alternatives/vncserver \
     && sed -i 's/\[ -r \\\$HOME\/\.Xresources/#&/' /etc/alternatives/vncserver \
-    && mkdir -p /root/.ssh && chmod 700 /root/.ssh
+    && mkdir -p /root/.ssh && chmod 700 /root/.ssh \
     && mkdir -p /root/.vnc && touch -a /root/.vnc/passwd && chmod 600 /root/.vnc/passwd \
     && mkdir -p /root/.fvwm
 
