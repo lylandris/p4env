@@ -95,6 +95,11 @@ Key 3 A M GotoPage 0 1
 Key 4 A M GotoPage 1 1
 
 # some simple default mouse bindings:
+# ============================================================
+# Key -----
+#           Context-----
+#                    Modifier-----A:all; S:shift; N:none; M:alt; C:ctrl
+#                            Action-----
 # up and down
 Key Left    A        M       Scroll -100 +0
 Key Left    A        M2      Scroll -100 +0
@@ -105,24 +110,19 @@ Key Up      A        M2      Scroll +0 -100
 Key Down    A        M       Scroll +0 +100
 Key Down    A        M2      Scroll +0 +100
 
-Mouse 1 R       A       Menu RootMenu Nop
-Mouse 2 R       A       Menu RootMenu Nop
-Mouse 3 R       A       WindowList NoGeometry
-Mouse 4 R       A       WindowList NoGeometry
-Mouse 5 R       A       WindowList NoGeometry
+Key Tab     A       M       MyTab
 
-Mouse 0 1       A       -
-Mouse 0 2       A       Iconify
-Mouse 1 F       A       Resize-or-Raise
-Mouse 1 TS      N       Move-or-Raise
-Mouse 1 A       M       Move-or-Raise
-Mouse 1 I       A       Move-or-Iconify
-Mouse 2 I       A       Iconify
-Mouse 2 T       A       WindowShade
-Mouse 3 T       A       -
+Mouse 1     R        A       -
+Mouse 2     R        A       Menu RootMenu Nop
+Mouse 3     R        A       WindowList NoGeometry
+Mouse 4     R        A       -
+Mouse 5     R        A       -
 
-#   for other parts of the window/borders/icons:
-Mouse 1 TS      A       Move-or-Raise
+Mouse 1     T        A       Move-or-Raise
+Mouse 1     I        A       Move-or-Iconify
+Mouse 1     A        M       Move-or-Raise
+Mouse 2     T        A       WindowShade
+Mouse 3     T        A       Iconify
 
 ######################## Sample Functions ##########################
 DestroyFunc Move-or-Raise
@@ -173,7 +173,7 @@ AddToFunc InitFunction
 + I Exec exec xsetroot -solid "#3a6ea5"
 + I Exec exec xrdb .Xresources
 + I Exec exec vncconfig -nowin 
-#+ I Exec exec display -size 1024x768 -window root /home/aa/.fvwm/images/blue.jpg 
+#+ I Exec exec display -size 1024x768 -window root /root/.fvwm/images/background.jpg 
 #+ I Exec exec xclock -digital -fg white -bg "#3a6ea5" -strftime "%T" -update 1
 #+ I Exec exec fcitx 
 
@@ -194,10 +194,11 @@ AddToFunc RestartFunction       "I" Module FvwmPager 0 0
 # 3.3 Menu
 # --------
 AddToMenu RootMenu
-  + "gvim" Exec exec gvim 
-  + "xterm" Exec exec xterm
+#  + "gvim" Exec exec gvim 
+  + "xterm-default" Exec exec xterm
 #  + "gnome-terminal" Exec exec gnome-terminal
-#  + "xterm2" Exec exec xterm -bg black -fg white
+  + "xterm-black" Exec exec xterm -bg black -fg white
+  + "xterm-darkblue" Exec exec xterm -bg darkblue -fg white
 #  + "emacs" Exec exec emacs
   + "reload" Restart fvwm2
 

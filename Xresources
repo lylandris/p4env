@@ -1,0 +1,29 @@
+!===============================
+! - Setting for xterm
+! --------------------
+XTerm*termName: xterm-256color
+XTerm*visualBell: false
+XTerm*marginBell: false
+XTerm*cursorBlink: true 
+XTerm*locale: true
+Xterm.utf8: true
+XTerm*utf8Title: true
+!Xterm*xftAntialias: true
+XTerm*fontMenu*fontdefault*Label: Default
+XTerm*faceName: Bitstream Vera Sans Mono
+XTerm*faceNameDoublesize: AR PL SungtiL GB
+XTerm*faceSize: 9
+!XTerm*antialias: true
+XTerm.cjkWidth: true
+!XTerm*background: #C7EDCC
+!XTerm*background: #000000
+!XTerm*foreground: #FFFFFF
+XTerm*scrollBar: false
+XTerm*rightScrollBar: false
+XTerm*jumpScroll: false
+XTerm*SaveLines: 0
+
+!----------------------
+!- End of setting Xterm
+!=========================
+
